@@ -15,7 +15,10 @@ public class HeartRateData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @Column( name="MiBand_ID")
     private String MiBand_ID;
+
     private int Heart_Rate_Value;
     private String Read_Time;
     private String Created_On;
@@ -25,8 +28,6 @@ public class HeartRateData {
     public Integer getHeatRateDataID(){
         return this.id;
     }
-
-
 
 
 

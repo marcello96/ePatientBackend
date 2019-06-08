@@ -14,7 +14,7 @@ public class DatabaseInitializer {
         this.dataService = dataService;
     }
 
-    public void initializeDatabase() {
+    void initializeDatabase() {
         //TODO
     }
 

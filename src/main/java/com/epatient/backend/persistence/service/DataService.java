@@ -25,4 +25,8 @@ public class DataService implements DataQuery {
         return dataRepository.getHeartRateByID(mibandid);
     }
 
+    @Override
+    public List<Integer> getHeartRateValuesFromRecentPeriod(String miband_id, String start_date){
+       return dataRepository.getHeartRateValuesFromRecentPeriod(miband_id, start_date);
+    }
 }
