@@ -21,7 +21,7 @@ public class DataService implements DataQuery {
 
 
     @Override
-    public HeartRateData getHeartRateByID(String mibandid) {
+    public int getHeartRateByID(String mibandid) {
         return dataRepository.getHeartRateByID(mibandid);
     }
 

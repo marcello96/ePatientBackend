@@ -1,5 +1,6 @@
 package com.epatient.backend.controller;
 
+import com.epatient.backend.persistence.model.HeartRateData;
 import com.epatient.backend.persistence.service.DataService;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,7 +8,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.epatient.backend.controller.UrlRequest;
 
 @RestController
 public class Controller {
@@ -37,10 +37,12 @@ public class Controller {
             method = RequestMethod.GET,
             produces = "application/json; charset=UTF-8")
     @CrossOrigin(origins = crossOriginUrl)
-    public String getHeartRateByID(@PathVariable String title){
+    public String getHeartRateByID(@PathVariable String id){
         ObjectMapper objectMapper = new ObjectMapper();
+        System.out.println("Test");
         try {
-            return objectMapper.writeValueAsString(dataService.getHeartRateByID(title));
+            int h = dataService.getHeartRateByID(id);
+            return objectMapper.writeValueAsString(h);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
             return UrlRequest.FAIL_RETURN_VALUE;

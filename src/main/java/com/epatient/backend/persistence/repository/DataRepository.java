@@ -15,6 +15,6 @@ public interface DataRepository extends JpaRepository<HeartRateData, Integer>, D
 
     @Override
     @Query("select id from HeartRateData")
-    HeartRateData getHeartRateByID(@Param("mibandid") String mibandid);
+    int getHeartRateByID(@Param("mibandid") String mibandid);
 
 }
