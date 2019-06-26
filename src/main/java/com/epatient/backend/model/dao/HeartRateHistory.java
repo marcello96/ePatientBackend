@@ -15,20 +15,19 @@ import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "HEART_RATE_HISTORY")
 @Data
 @NoArgsConstructor
-public class HeartRateData {
+public class HeartRateHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private long id;
 
     @Column(nullable = false)
     private int value;
 
     @Column(nullable = false)
-    private LocalDateTime timestamp;
+    private LocalDateTime measurementTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "patient_id")

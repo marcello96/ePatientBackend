@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-//@CrossOrigin("http://localhost:3000")
 public class PatientController {
 
     private final MeasurementService measurementService;
@@ -21,18 +20,13 @@ public class PatientController {
         this.measurementService = measurementService;
     }
 
-    @RequestMapping("/test")
-    public String index2() {
-        return "TEST!";
-    }
-
     @PostMapping(value = "/patient/{patientId}/measurement")
-    public void addMeasurement(@PathVariable int patientId, @RequestBody MeasurementDTO measurementDTO) {
+    public void addMeasurement(@PathVariable long patientId, @RequestBody MeasurementDTO measurementDTO) {
         measurementService.addMeasurement(patientId, measurementDTO);
     }
 
-    @GetMapping("/patient/{patientId}/measurement")
-    public MeasurementsDTO getHeartRateByID(@PathVariable int patientId) {
+    @GetMapping("/patient/{patientId}/measurements")
+    public MeasurementsDTO getHeartRateByID(@PathVariable long patientId) {
         return measurementService.getMeasurements(patientId);
     }
 }

@@ -21,8 +21,8 @@ public class Patient {
     private long id;
 
     @Column(nullable = false, unique = true)
-    private String name;
+    private String username;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
-    private List<HeartRateData> heartRates;
+    private List<HeartRateHistory> heartRates;
 }
