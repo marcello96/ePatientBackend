@@ -1,5 +1,6 @@
 package com.epatient.backend.controller;
 
+import com.epatient.backend.exception.NoSuchPatientException;
 import com.epatient.backend.model.dto.MeasurementDTO;
 import com.epatient.backend.model.dto.MeasurementsDTO;
 import com.epatient.backend.model.dto.PatientsDTO;
@@ -31,13 +32,13 @@ public class PatientController {
     }
 
     @PostMapping("/patient/{patientId}/measurement")
-    public void addMeasurement(@PathVariable long patientId, @RequestBody MeasurementDTO measurementDTO) {
+    public void addMeasurement(@PathVariable long patientId, @RequestBody MeasurementDTO measurementDTO) throws NoSuchPatientException {
         measurementService.addMeasurement(patientId, measurementDTO);
         measurementEventBus.sendMeasurementEvent(patientId, measurementDTO);
     }
 
     @GetMapping("/patient/{patientId}/measurements")
-    public MeasurementsDTO getHeartRateByID(@PathVariable long patientId) {
+    public MeasurementsDTO getHeartRateByID(@PathVariable long patientId) throws NoSuchPatientException {
         return measurementService.getMeasurements(patientId);
     }
 
