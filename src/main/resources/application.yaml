@@ -1,5 +1,6 @@
 server.port: 8080
 
+
 spring:
   h2:
     console:
@@ -12,6 +13,10 @@ spring:
     driverClassName: org.h2.Driver
     username: sa
     password:
+
+logging:
+  level:
+    com.epatient.backend: DEBUG
 
 #  datasource:
 #    url: jdbc:sqlserver://DESKTOP-C1V4R2D;databaseName=RemotePatientControl
