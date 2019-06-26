@@ -3,7 +3,6 @@ package com.epatient.backend.converter;
 import com.epatient.backend.model.dao.HeartRateHistory;
 import com.epatient.backend.model.dao.Patient;
 import com.epatient.backend.model.dto.MeasurementDTO;
-import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component

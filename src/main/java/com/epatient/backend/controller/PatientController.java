@@ -2,8 +2,10 @@ package com.epatient.backend.controller;
 
 import com.epatient.backend.model.dto.MeasurementDTO;
 import com.epatient.backend.model.dto.MeasurementsDTO;
+import com.epatient.backend.model.dto.PatientsDTO;
 import com.epatient.backend.service.MeasurementEventBus;
 import com.epatient.backend.service.MeasurementService;
+import com.epatient.backend.service.PatientService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,10 +20,14 @@ public class PatientController {
 
     private final MeasurementService measurementService;
     private final MeasurementEventBus measurementEventBus;
+    private final PatientService patientService;
 
-    public PatientController(MeasurementService measurementService, MeasurementEventBus measurementEventBus) {
+    public PatientController(MeasurementService measurementService,
+                             MeasurementEventBus measurementEventBus,
+                             PatientService patientService) {
         this.measurementService = measurementService;
         this.measurementEventBus = measurementEventBus;
+        this.patientService = patientService;
     }
 
     @PostMapping("/patient/{patientId}/measurement")
@@ -33,6 +39,11 @@ public class PatientController {
     @GetMapping("/patient/{patientId}/measurements")
     public MeasurementsDTO getHeartRateByID(@PathVariable long patientId) {
         return measurementService.getMeasurements(patientId);
+    }
+
+    @GetMapping("/patients")
+    public PatientsDTO getPatients() {
+        return patientService.getPatients();
     }
 
     @GetMapping("/patient/{patientId}/measurements/subscribe")
