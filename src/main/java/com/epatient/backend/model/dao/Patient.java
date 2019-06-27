@@ -23,6 +23,12 @@ public class Patient {
     @Column(nullable = false, unique = true)
     private String username;
 
+    @Column(nullable = false)
+    private String firstname;
+
+    @Column(nullable = false)
+    private String lastname;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
     private List<HeartRateHistory> heartRates;
 }

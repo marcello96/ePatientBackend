@@ -8,12 +8,16 @@ import com.epatient.backend.service.MeasurementEventBus;
 import com.epatient.backend.service.MeasurementService;
 import com.epatient.backend.service.PatientService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
+
+import java.time.LocalDateTime;
 
 @Slf4j
 @RestController
@@ -38,8 +42,10 @@ public class PatientController {
     }
 
     @GetMapping("/patient/{patientId}/measurements")
-    public MeasurementsDTO getHeartRateByID(@PathVariable long patientId) throws NoSuchPatientException {
-        return measurementService.getMeasurements(patientId);
+    public MeasurementsDTO getHeartRateByID(@PathVariable long patientId,
+                                            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime from,
+                                            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime to) throws NoSuchPatientException {
+        return measurementService.getMeasurements(patientId, from, to);
     }
 
     @GetMapping("/patients")

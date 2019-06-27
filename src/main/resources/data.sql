@@ -1,5 +1,8 @@
-insert into PATIENT (ID, USERNAME)
-   values (1, 'admin');
+insert into PATIENT (ID, USERNAME, FIRSTNAME, LASTNAME)
+   values (1, 'admin', 'Ricky', 'Balboa');
+
+insert into PATIENT (ID, USERNAME, FIRSTNAME, LASTNAME)
+   values (2, 'jigsaw', 'Hannah', 'Smiley');
 
 insert into HEART_RATE_HISTORY (ID, MEASUREMENT_TIME, VALUE, PATIENT_ID)
    values (1, '2019-06-25 18:10:00', 78, 1);
@@ -28,4 +31,16 @@ insert into HEART_RATE_HISTORY (ID, MEASUREMENT_TIME, VALUE, PATIENT_ID)
 insert into HEART_RATE_HISTORY (ID, MEASUREMENT_TIME, VALUE, PATIENT_ID)
    values (9, '2019-06-25 18:18:00', 78, 1);
 
-alter sequence HIBERNATE_SEQUENCE restart with 10
+insert into HEART_RATE_HISTORY (ID, MEASUREMENT_TIME, VALUE, PATIENT_ID)
+   values (10, '2019-06-25 18:15:00', 78, 2);
+
+insert into HEART_RATE_HISTORY (ID, MEASUREMENT_TIME, VALUE, PATIENT_ID)
+   values (11, '2019-06-25 18:16:00', 99, 2);
+
+insert into HEART_RATE_HISTORY (ID, MEASUREMENT_TIME, VALUE, PATIENT_ID)
+   values (12, '2019-06-25 18:17:00', 78, 2);
+
+insert into HEART_RATE_HISTORY (ID, MEASUREMENT_TIME, VALUE, PATIENT_ID)
+   values (13, '2019-06-25 18:18:00', 78, 2);
+
+alter sequence HIBERNATE_SEQUENCE restart with 14

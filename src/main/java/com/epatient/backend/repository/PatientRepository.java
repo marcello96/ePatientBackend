@@ -12,4 +12,5 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
 
     List<Patient> findAll();
     Optional<Patient> findById(Long id);
+    boolean existsById(Long id);
 }

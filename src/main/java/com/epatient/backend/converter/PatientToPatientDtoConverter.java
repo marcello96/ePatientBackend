@@ -13,6 +13,8 @@ public class PatientToPatientDtoConverter implements Converter<Patient, PatientD
         return PatientDTO.builder()
                 .username(patient.getUsername())
                 .id(patient.getId())
+                .firstname(patient.getFirstname())
+                .lastname(patient.getLastname())
                 .build();
     }
 }

@@ -12,4 +12,6 @@ import lombok.NoArgsConstructor;
 public class PatientDTO {
     private long id;
     private String username;
+    private String firstname;
+    private String lastname;
 }
