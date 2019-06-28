@@ -6,6 +6,7 @@ import com.epatient.backend.security.filters.JWTAuthorizationFilter;
 import com.epatient.backend.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -30,12 +31,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .addFilterBefore(corsFilter(), SessionManagementFilter.class)
+                .addFilterAfter(corsFilter(), SessionManagementFilter.class)
                 .csrf().disable()
                 .authorizeRequests()
+                    .antMatchers(HttpMethod.OPTIONS, "/**").permitAll() //allow CORS option calls
                     .antMatchers("/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**").permitAll()
                     .antMatchers("/h2/**").permitAll()
                     .antMatchers("/user-management/**").permitAll()
+                    .antMatchers("/login").permitAll()
                     .antMatchers("/patient/measurement").hasRole(Role.PATIENT.name())
                     .anyRequest().hasAnyRole(Role.PATIENT.name(), Role.DOCTOR.name())
             .and()

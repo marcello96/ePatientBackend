@@ -29,6 +29,7 @@ import java.util.Date;
 
 import static com.epatient.backend.security.SecurityConstants.HEADER_STRING;
 import static com.epatient.backend.security.SecurityConstants.TOKEN_PREFIX;
+import static com.epatient.backend.security.filters.CorsFilter.addCorsHeaders;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -57,6 +58,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .compact();
         response.getWriter().write("{\"token\":\"" + TOKEN_PREFIX + token + "\"}");
         response.addHeader("Content-Type", "application/json");
+        addCorsHeaders(response);
+
         response.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
     }
 }
