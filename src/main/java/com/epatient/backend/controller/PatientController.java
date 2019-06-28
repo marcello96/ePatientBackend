@@ -4,6 +4,7 @@ import com.epatient.backend.exception.NoSuchPatientException;
 import com.epatient.backend.model.dto.MeasurementDTO;
 import com.epatient.backend.model.dto.MeasurementsDTO;
 import com.epatient.backend.model.dto.PatientsDTO;
+import com.epatient.backend.service.AuthenticationService;
 import com.epatient.backend.service.MeasurementEventBus;
 import com.epatient.backend.service.MeasurementService;
 import com.epatient.backend.service.PatientService;
@@ -26,17 +27,21 @@ public class PatientController {
     private final MeasurementService measurementService;
     private final MeasurementEventBus measurementEventBus;
     private final PatientService patientService;
+    private final AuthenticationService authenticationService;
 
     public PatientController(MeasurementService measurementService,
                              MeasurementEventBus measurementEventBus,
-                             PatientService patientService) {
+                             PatientService patientService,
+                             AuthenticationService authenticationService) {
         this.measurementService = measurementService;
         this.measurementEventBus = measurementEventBus;
         this.patientService = patientService;
+        this.authenticationService = authenticationService;
     }
 
-    @PostMapping("/patient/{patientId}/measurement")
-    public void addMeasurement(@PathVariable long patientId, @RequestBody MeasurementDTO measurementDTO) throws NoSuchPatientException {
+    @PostMapping("/patient/measurement")
+    public void addMeasurement(@RequestBody MeasurementDTO measurementDTO) throws NoSuchPatientException {
+        long patientId = authenticationService.getAuthenticatedUser().getId();
         measurementService.addMeasurement(patientId, measurementDTO);
         measurementEventBus.sendMeasurementEvent(patientId, measurementDTO);
     }

@@ -6,17 +6,14 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
-@Table(name = "patients")
+@Table(name = "doctors")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Patient extends ApplicationUser {
+public class Doctor extends ApplicationUser {
 
     @NotNull
     @Column
@@ -26,14 +23,7 @@ public class Patient extends ApplicationUser {
     @Column
     private String lastname;
 
-    @NotNull
-    @Column
-    private int age;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
-    private List<HeartRateHistory> heartRates;
-
-    public Patient() {
-        this.setRole(Role.PATIENT);
+    public Doctor() {
+        this.setRole(Role.DOCTOR);
     }
 }

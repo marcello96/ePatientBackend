@@ -9,10 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PatientDTO {
-    private long id;
+public class DoctorCreationDTO {
     private String username;
+    private String password;
     private String firstname;
     private String lastname;
-    private int age;
 }

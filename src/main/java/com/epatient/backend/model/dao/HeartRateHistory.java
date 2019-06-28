@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -19,13 +21,17 @@ import java.time.LocalDateTime;
 public class HeartRateHistory {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
+    @SequenceGenerator(name="hr_seq", sequenceName="hr_seq", allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hr_seq")
     private long id;
 
-    @Column(nullable = false)
+    @NotNull
+    @Column
     private int value;
 
-    @Column(nullable = false)
+    @NotNull
+    @Column
     private LocalDateTime measurementTime;
 
     @ManyToOne(fetch = FetchType.LAZY)

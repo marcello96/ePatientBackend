@@ -15,6 +15,7 @@ public class PatientToPatientDtoConverter implements Converter<Patient, PatientD
                 .id(patient.getId())
                 .firstname(patient.getFirstname())
                 .lastname(patient.getLastname())
+                .age(patient.getAge())
                 .build();
     }
 }
