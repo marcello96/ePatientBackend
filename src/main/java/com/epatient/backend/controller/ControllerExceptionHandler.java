@@ -23,13 +23,13 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(UserExistsException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public void handleUserExistsException(UserExistsException e) {
-        log.error("User exists!");
+        log.error("User exists!", e);
     }
 
 
     @ExceptionHandler({MalformedCredentialsException.class, HttpMessageNotReadableException.class})
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     public void handleMalformedRequestException() {
-        log.error("User exists!");
+        log.error("Credentials malformed!");
     }
 }

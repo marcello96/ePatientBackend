@@ -3,6 +3,7 @@ package com.epatient.backend.model.dao;
 import com.epatient.backend.security.Role;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import java.util.List;
 @Entity
 @Table(name = "patients")
 @Data
+@ToString(exclude = "heartRates")
 @EqualsAndHashCode(callSuper = true)
 public class Patient extends ApplicationUser {
 

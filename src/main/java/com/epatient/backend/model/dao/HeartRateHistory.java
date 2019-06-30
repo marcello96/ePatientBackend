@@ -2,10 +2,10 @@ package com.epatient.backend.model.dao;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
+@ToString(exclude = "patient")
 @NoArgsConstructor
 public class HeartRateHistory {
 
@@ -34,7 +35,7 @@ public class HeartRateHistory {
     @Column
     private LocalDateTime measurementTime;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "patient_id")
     private Patient patient;
 }
